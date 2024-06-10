@@ -41,7 +41,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             NavigableListDetailPaneScaffoldTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ListDetailLayout()
+                    ListDetailLayout(
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
@@ -49,10 +51,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ListDetailLayout(){
+fun ListDetailLayout(modifier: Modifier = Modifier){
     val navigator = rememberListDetailPaneScaffoldNavigator<Any>()
 
     NavigableListDetailPaneScaffold(
+        modifier = modifier,
         navigator = navigator,
         listPane = {
             LazyColumn(modifier = Modifier.fillMaxSize(),
